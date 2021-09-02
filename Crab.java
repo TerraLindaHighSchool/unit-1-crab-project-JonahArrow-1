@@ -51,6 +51,14 @@ public class Crab extends Actor
         {
             removeTouching(Worm.class);
             Greenfoot.playSound("slurp.wav");
+            
+            // Win conditions for crab
+            if(getWorld().getObjects(Worm.class).size()==0)
+            {
+                Greenfoot.setWorld(new WinSplash());
+                Greenfoot.playSound("fanfare.wav");
+                Greenfoot.stop();
+            }
         }
         
         if(isTouching(Lobster.class))

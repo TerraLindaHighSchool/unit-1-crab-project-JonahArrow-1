@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Worm here.
+ * Crabs must eat all the worms to win the game
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Jonah Arrow 
+ * @version 9/2/21
  */
 public class Worm extends Actor
 {

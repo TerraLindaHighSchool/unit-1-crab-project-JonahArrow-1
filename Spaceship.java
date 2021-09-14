@@ -5,13 +5,14 @@ import greenfoot.*;
  * @author: Jonah Arrow
  * 8/30/21
  */
-public class Crab extends Actor
+public class Spaceship extends Actor
 {
     // This method repeats the following actions
+    
+    private int canShoot;
+    
     public void act()
     {
-        move(3);
-        turnAtEdge();
         checkKeyPress();
         onCollision();
     }
@@ -30,38 +31,30 @@ public class Crab extends Actor
     {
         if(Greenfoot.isKeyDown("right"))
         {
-            turn(1);
+            move(3);
         }
         
         if(Greenfoot.isKeyDown("left"))
         {
-            turn(-1);
+            move(-3);
         }
         
+        // Shoots pellets
         if(Greenfoot.isKeyDown("up"))
         {
-            Greenfoot.delay(60);
+            if(canShoot == 45)
+            {
+                getWorld().addObject(new Bullet(),getX(),getY());
+                canShoot = 0;
+            }
+            canShoot++;
         }
     }
     
     // Check for collisions with other objects
     private void onCollision()
     {
-        if(isTouching(Worm.class))
-        {
-            removeTouching(Worm.class);
-            Greenfoot.playSound("slurp.wav");
-            
-            // Win conditions for crab
-            if(getWorld().getObjects(Worm.class).size()==0)
-            {
-                Greenfoot.setWorld(new WinSplash());
-                Greenfoot.playSound("fanfare.wav");
-                Greenfoot.stop();
-            }
-        }
-        
-        if(isTouching(Lobster.class))
+        if(isTouching(EnemyBullet.class))
         {
             Greenfoot.playSound("au.wav");
             Greenfoot.stop();
